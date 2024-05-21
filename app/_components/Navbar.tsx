@@ -3,7 +3,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-around text-white items-center p-4">
+    <div className="flex justify-around text-white items-center p-4 max-w-screen-3xl mx-auto">
       <div> ramp </div>
       <div className="text-white flex gap-4">
         <Link href="/">Products</Link>
@@ -16,7 +16,9 @@ const Navbar = () => {
         <button className="border bg-transparent font-bold px-4 py-2">
           Sign In
         </button>
-        <button className="font-bold bg-[#E4F222] px-4 py-2">See a demo</button>
+        <button className="font-bold bg-[#E4F222] px-4 py-2 text-black">
+          See a demo
+        </button>
       </div>
     </div>
   );

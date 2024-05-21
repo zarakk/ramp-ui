@@ -1,21 +1,26 @@
 "use client";
 import { useState } from "react";
-import Inbox from "./DemoInterface/Inbox";
-import Dashboard from "./DemoInterface/Dashboard";
-import Cards from "./DemoInterface/Cards";
-import Travel from "./DemoInterface/Travel";
-import EmployeeProgram from "./DemoInterface/EmployeeProgram";
-import Reporting from "./DemoInterface/Reporting";
+import Inbox from "./DemoInterface/InboxComponent/Inbox";
+import Cards from "./DemoInterface/CardsComponent/Cards";
+import Travel from "./DemoInterface/TravelComponent/Travel";
+import EmployeeProgram from "./DemoInterface/EmployeeComponent/EmployeeProgram";
+import Reporting from "./DemoInterface/ReportingComponent/Reporting";
+import { SidebarProps } from "@/Types/Types";
+import { sections } from "@/constants/constants";
 
-const Sidebar = ({ sections, activeSection, setActiveSection }: any) => {
+const Sidebar = ({
+  sections,
+  activeSection,
+  setActiveSection,
+}: SidebarProps) => {
   return (
     <div className="sidebar flex flex-col items-start w-16 px-1">
-      {sections.map((section: any) => (
+      {sections.map((section: string) => (
         <button
           key={section}
           className={
             activeSection === section
-              ? "active  bg-gray-100 p-4 w-full rounded"
+              ? "active  bg-gray-200 p-4 w-full rounded"
               : "p-4 hover:bg-gray-200 duration-300 ease-in-out border-radius-300 w-full rounded"
           }
           onClick={() => setActiveSection(section)}
@@ -27,22 +32,30 @@ const Sidebar = ({ sections, activeSection, setActiveSection }: any) => {
   );
 };
 
-const Payments = () => <div>Payments</div>;
-
 const DemoInterface = () => {
   const [activeSection, setActiveSection] = useState("Inbox");
-  const sections = ["Inbox", "Settings", "Payments", "Cards", "Travel"];
 
   return (
-    <div className="app flex text-black bg-gray-300 w-full">
-      <div>
+    <div className="app flex text-black bg-[#f6f5f5] w-full">
+      <div
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
         <Sidebar
           sections={sections}
           activeSection={activeSection}
           setActiveSection={setActiveSection}
         />
       </div>
-      <div className="content p-4 text-black bg-white w-full">
+      <div
+        className="content p-4 text-black bg-white w-full h-144 overflow-auto"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
         {activeSection === "Inbox" && <Inbox />}
         {activeSection === "Settings" && <Reporting />}
         {activeSection === "Payments" && <EmployeeProgram />}

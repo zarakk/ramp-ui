@@ -38,34 +38,80 @@
 //   );
 // };
 
+// // export default LandingBanner;
+
+// import React from "react";
+// import Navbar from "./Navbar";
+// import HeaderBanner from "./HeaderBanner";
+// import LandingTransition from "./LandingTransition";
+
+// const LandingBanner = () => {
+//   return (
+//     <div className="bg-[#17332d] w-full">
+//       <div className="h-screen">
+//         <Navbar />
+//         <HeaderBanner />
+//       </div>
+
+//       <div
+//         style={{
+//           scrollSnapType: "y mandatory",
+//           overflowY: "scroll",
+//           height: "1000px",
+//           scrollbarWidth: "none",
+//           msOverflowStyle: "none",
+//           background: "black",
+//         }}
+//       >
+//         <LandingTransition />
+//       </div>
+//     </div>
+//   );
+// };
+
 // export default LandingBanner;
 
 import React from "react";
 import Navbar from "./Navbar";
 import HeaderBanner from "./HeaderBanner";
-import LandingTransition from "./LandingTransition";
+import LandingTransition from "./ScrollTransition";
+import Footer from "./Footer";
+import ScrollTransition from "./ScrollTransition";
 
 const LandingBanner = () => {
   return (
-    <div className="bg-[#17332d] w-full">
-      <div className="h-screen">
-        <Navbar />
-        <HeaderBanner />
-      </div>
-
+    <>
       <div
+        className="w-full relative"
         style={{
           scrollSnapType: "y mandatory",
           overflowY: "scroll",
-          height: "1000px",
+          height: "100vh", // Adjust this value as needed
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          background: "black",
         }}
       >
-        <LandingTransition />
+        <div
+          className=" z-50 relative bg-[#17332d]"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          <div className="mx-auto p-4 max-w-screen-3xl">
+            <Navbar />
+            <HeaderBanner />
+          </div>
+        </div>
+        <div
+          style={{
+            scrollSnapAlign: "start",
+            height: "1000px",
+            background: "black",
+          }}
+        >
+          <ScrollTransition />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
