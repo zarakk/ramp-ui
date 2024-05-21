@@ -7,6 +7,7 @@ import EmployeeProgram from "./DemoInterface/EmployeeComponent/EmployeeProgram";
 import Reporting from "./DemoInterface/ReportingComponent/Reporting";
 import { SidebarProps } from "@/Types/Types";
 import { sections } from "@/constants/constants";
+import Image from "next/image";
 
 const Sidebar = ({
   sections,
@@ -25,7 +26,11 @@ const Sidebar = ({
           }
           onClick={() => setActiveSection(section)}
         >
-          <img className="bg-contain" src={`/${section}.svg`} />
+          <Image
+            className="bg-contain"
+            src={`/${section}.svg`}
+            alt="section-image"
+          />
         </button>
       ))}
     </div>

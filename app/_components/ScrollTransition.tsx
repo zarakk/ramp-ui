@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { IDProps } from "@/Types/Types";
 import { id } from "@/constants/constants";
+import Image from "next/image";
 
 function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance]);
@@ -30,7 +31,7 @@ const cardVariants: Variants = {
   },
 };
 
-function Image({ title, description, image }: IDProps) {
+function Images({ title, description, image }: IDProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress, 0);
@@ -48,11 +49,9 @@ function Image({ title, description, image }: IDProps) {
             className="flex items-start justify-center"
             variants={cardVariants}
           >
-            <img
-              src={image}
-              className="bg-cover w-3/4"
-              alt="A London skyscraper"
-            />
+            {image && (
+              <Image src={image} className="bg-cover w-3/4" alt="ramp-images" />
+            )}
           </motion.div>
         </div>
       </motion.div>
@@ -83,7 +82,7 @@ const ScrollTransition = () => {
       <div style={{ scrollSnapAlign: "center" }}>
         {id.map(({ title, description, image }: IDProps) => (
           <>
-            <Image title={title} description={description} image={image} />
+            <Images title={title} description={description} image={image} />
           </>
         ))}
         <motion.div className="progress" style={{ scaleX }} />

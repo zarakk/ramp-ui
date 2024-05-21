@@ -7,10 +7,11 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
+import Image from "next/image";
 type IDProps = {
   title: string;
   description: string;
-  image?: string;
+  image: string;
 };
 
 function useParallax(value: MotionValue<number>, distance: number) {
@@ -50,7 +51,7 @@ const id: IDProps[] = [
   },
 ];
 
-function Image({ title, description, image }: IDProps) {
+function Images({ title, description, image }: IDProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress, 0);
@@ -58,7 +59,11 @@ function Image({ title, description, image }: IDProps) {
   return (
     <section className="scrollingmotion">
       <div ref={ref} className="flex items-center ">
-        <img src={image} className="bg-cover w-3/4" alt="A London skyscraper" />
+        <Image
+          src={image}
+          className="bg-cover w-3/4"
+          alt="A London skyscraper"
+        />
       </div>
       <div className="flex flex-col gap-4 justify-center">
         <motion.h2
@@ -87,7 +92,7 @@ const LandingTransition = () => {
       <div style={{ scrollSnapAlign: "center" }}>
         {id.map(({ title, description, image }: IDProps) => (
           <>
-            <Image title={title} description={description} image={image} />
+            <Images title={title} description={description} image={image} />
           </>
         ))}
         <motion.div className="progress" style={{ scaleX }} />

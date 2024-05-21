@@ -30,11 +30,12 @@ import React from "react";
 import DemoInterface from "./DemoInterface";
 import { IconsType } from "@/Types/Types";
 import { icons } from "@/constants/constants";
+import Image from "next/image";
 
 const IconComponent = ({ icon, description }: IconsType) => {
   return (
     <div className="flex flex-col gap-4">
-      <img src={icon} className="w-12" alt={icon}></img>
+      <Image src={icon} className="w-12" alt={icon}></Image>
       <p>{description}</p>
     </div>
   );
@@ -72,8 +73,8 @@ const HeaderBanner = () => {
         </div>
       </div>
       <div className="flex gap-4 justify-between text-white p-10 bg-[#2f4842] mt-10">
-        {icons.map(({ icon, description }) => (
-          <IconComponent icon={icon} description={description} />
+        {icons.map(({ icon, description }, key) => (
+          <IconComponent icon={icon} description={description} key={key} />
         ))}
       </div>
     </>
